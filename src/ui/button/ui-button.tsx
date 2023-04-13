@@ -21,13 +21,13 @@ const classes = {
   purple: 'active:outline-none bg-purple-700 active:bg-purple-800 rounded-lg text-sm px-5 py-2.5'
 }
 const textClasses = {
-  default: 'text-white font-inter-500 text-sm',
-  alternative: 'text-gray-900 font-inter-500 hover:text-blue-700 text-sm',
-  dark: 'text-white text-sm font-inter-500',
-  green: 'font-inter-500 text-white',
-  red: 'text-white font-inter-500',
-  yellow: 'text-white font-inter-500',
-  purple: 'text-white font-inter-500'
+  default: 'text-center text-white font-inter-500 text-sm',
+  alternative: 'text-center text-gray-900 font-inter-500 hover:text-blue-700 text-sm',
+  dark: 'text-center text-white text-sm font-inter-500',
+  green: 'text-center font-inter-500 text-white',
+  red: 'text-center text-white font-inter-500',
+  yellow: 'text-center text-white font-inter-500',
+  purple: 'text-center text-white font-inter-500'
 }
 
 const UIButton: React.FC<Props> =  ({ title, onPress, type = "default" }) => {
