@@ -1,5 +1,5 @@
 
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { View, Text } from 'react-native';
 import UIButton from '../ui/button/ui-button'
 import type {StackScreenProps} from '@react-navigation/stack'
@@ -7,13 +7,25 @@ import { RootStackParamList } from '../../App';
 
 type Props = StackScreenProps<RootStackParamList, 'Home'>
 
-const HomeScreen: React.FC<Props> = ({navigation}) => {
+const HomeScreen: React.FC<Props> = ({navigation, route}) => {
+  const [actionText, setActionText] = useState('')
+  useEffect(() => {
+    if (route.params?.actionText) {
+      setActionText(route.params.actionText)
+    }
+  }, [route.params?.actionText])
   const onBtnPress = () => {
-    navigation.navigate('About')
+    navigation.navigate('About', {
+      id: 10,
+      name: 'Rasul'
+    })
   }
-  return <View className="bg-red-400 flex flex-col w-full h-full items-center justify-center">
+  return <View className=" bg-red-400 flex flex-col w-full h-full items-center justify-center">
     <Text className="text-white font-inter-700 text-lg">
       HomeScreen
+    </Text>
+    <Text className="text-white font-inter-700 text-md">
+      {actionText}
     </Text>
     <UIButton title="Go to About Page" onPress={onBtnPress} />
   </View>

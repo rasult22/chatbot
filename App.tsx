@@ -5,11 +5,17 @@ import { createStackNavigator } from '@react-navigation/stack';
 import { NavigationContainer } from '@react-navigation/native';
 import HomeScreen from './src/screens/Home';
 import AboutScreen from './src/screens/About';
+
+interface User {
+  id: number | string,
+  name: string
+}
 export type RootStackParamList = {
-  Home: undefined;
-  About: undefined;
+  Home?: {
+    actionText?: string
+  };
+  About?: User;
 };
-// [[[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]]]
 export default function App() {
   const Stack = createStackNavigator()
   const [fontsLoaded] = useFonts({
@@ -26,8 +32,16 @@ export default function App() {
       <Stack.Navigator>
         <Stack.Screen name="Home" component={HomeScreen} />
         <Stack.Screen name="About" component={AboutScreen} options={{
-          'headerBackTitleVisible': false
-        }}/>
+          'headerBackTitleVisible': false,
+          title: 'Что такое?'
+        }}
+        initialParams={
+          {
+            id: 123,
+            name: 'John'
+          }
+        }
+        />
       </Stack.Navigator>
     </NavigationContainer>
   );
