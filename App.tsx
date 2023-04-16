@@ -4,7 +4,8 @@ import Test from './Test'
 import { createStackNavigator } from '@react-navigation/stack';
 import { NavigationContainer } from '@react-navigation/native';
 import HomeScreen from './src/screens/Home';
-import AboutScreen from './src/screens/About';
+import ChatScreen from './src/screens/Chat';
+import { SafeAreaProvider } from 'react-native-safe-area-context';
 
 interface User {
   id: number | string,
@@ -14,7 +15,10 @@ export type RootStackParamList = {
   Home?: {
     actionText?: string
   };
-  About?: User;
+  Chat?: {
+    chat_id: string | number,
+    title?: string
+  };
 };
 export default function App() {
   const Stack = createStackNavigator()
@@ -28,21 +32,22 @@ export default function App() {
 
 
   return (
-    <NavigationContainer>
-      <Stack.Navigator>
-        <Stack.Screen name="Home" component={HomeScreen} />
-        <Stack.Screen name="About" component={AboutScreen} options={{
-          'headerBackTitleVisible': false,
-          title: 'Что такое?'
-        }}
-        initialParams={
-          {
-            id: 123,
-            name: 'John'
+    <SafeAreaProvider>
+      <NavigationContainer>
+        <Stack.Navigator>
+          <Stack.Screen name="Home" component={HomeScreen} />
+          <Stack.Screen name="About" component={ChatScreen} options={{
+            'headerBackTitleVisible': false,
+            title: 'Чат'
+          }}
+          initialParams={
+            {
+              chat_id: 123,
+            }
           }
-        }
-        />
-      </Stack.Navigator>
-    </NavigationContainer>
+          />
+        </Stack.Navigator>
+      </NavigationContainer>
+    </SafeAreaProvider>
   );
 }
