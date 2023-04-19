@@ -3,7 +3,7 @@ import { apiKey } from '../../env'
 import { ChatMessageResponse, ChatMessage } from '../types/openai'  
 export async function getChatResponse(context: ChatMessage[]): Promise<string> {
   const messages = [
-    {"role": "system", "content": "Always answer only with five words"},
+    {"role": "system", "content": "Always answer only with five words. If you don't understand question just say: Mmmmmm"},
     ...context
   ]
   console.log(messages)

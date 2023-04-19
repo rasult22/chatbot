@@ -12,7 +12,7 @@ import { ChatMessage } from '../types/openai';
 type Props = StackScreenProps<RootStackParamList, 'Chat'>
 
 
-const AboutScreen: React.FC<Props> = ({navigation, route}) => {
+const ChatScreen: React.FC<Props> = ({navigation, route}) => {
   const [title, setTitle] = useState('')
   const insets = useSafeAreaInsets()
   const allowSend = useRef(true)
@@ -27,11 +27,13 @@ const AboutScreen: React.FC<Props> = ({navigation, route}) => {
     setMessages([
       {
         _id: 1,
-        text: 'Hey! How can I help you mate?',
+        text: 'Start chatting with GPT',
         createdAt: new Date(),
+        system: true,
         user:chatGTP
       },
     ])
+    alert('Модель настроена на то, чтобы отвечать на сообщения коротко в целях экономии токенов.')
   }, [])
   
   const onSend = useCallback(async (messages: IMessage[] = [], isGPT?: boolean) => {
@@ -63,4 +65,4 @@ const AboutScreen: React.FC<Props> = ({navigation, route}) => {
   </View> 
 }
 
-export default AboutScreen
+export default ChatScreen

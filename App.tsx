@@ -34,9 +34,15 @@ export default function App() {
   return (
     <SafeAreaProvider>
       <NavigationContainer>
-        <Stack.Navigator>
-          <Stack.Screen name="Home" component={HomeScreen} />
-          <Stack.Screen name="About" component={ChatScreen} options={{
+        <Stack.Navigator >
+          <Stack.Screen name="Home" component={HomeScreen}
+            options={
+              {
+                title: 'Главная'
+              }
+            }
+          />
+          <Stack.Screen name="Chat" component={ChatScreen} options={{
             'headerBackTitleVisible': false,
             title: 'Чат'
           }}

@@ -15,9 +15,8 @@ const HomeScreen: React.FC<Props> = ({navigation, route}) => {
     }
   }, [route.params?.actionText])
   const onBtnPress = () => {
-    navigation.navigate('About', {
-      id: 10,
-      name: 'Rasul'
+    navigation.navigate('Chat', {
+      chat_id: 10
     })
   }
   return <View className=" bg-red-400 flex flex-col w-full h-full items-center justify-center">
@@ -27,7 +26,7 @@ const HomeScreen: React.FC<Props> = ({navigation, route}) => {
     <Text className="text-white font-inter-700 text-md">
       {actionText}
     </Text>
-    <UIButton title="Go to About Page" onPress={onBtnPress} />
+    <UIButton title="Open Chat" onPress={onBtnPress} />
   </View>
 }
 
