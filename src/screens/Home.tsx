@@ -1,7 +1,8 @@
 
 import React, { useEffect, useState } from 'react';
-import { View, Text } from 'react-native';
+import { View, Text, ScrollView } from 'react-native';
 import UIButton from '../ui/button/ui-button'
+import UICell from '../ui/cell/ui-cell'
 import type {StackScreenProps} from '@react-navigation/stack'
 import { RootStackParamList } from '../../App';
 
@@ -14,19 +15,23 @@ const HomeScreen: React.FC<Props> = ({navigation, route}) => {
       setActionText(route.params.actionText)
     }
   }, [route.params?.actionText])
-  const onBtnPress = () => {
-    navigation.navigate('Chat', {
-      chat_id: 10
-    })
+
+  const onBtnPress = (screenName: "Home" | "Chat" | "ChatDavinci") => {
+    navigation.navigate(screenName)
   }
-  return <View className=" bg-red-400 flex flex-col w-full h-full items-center justify-center">
-    <Text className="text-white font-inter-700 text-lg">
-      HomeScreen
-    </Text>
+  
+  return <View className="h-full">
+    <ScrollView>
+      <UICell title="чат с GPT-3.5 Turbo" onPress={() => {
+        onBtnPress('Chat')
+      }} />
+      <UICell title="чат с сарказмом text-davinci-003" onPress={()=> {
+        onBtnPress('ChatDavinci')
+      }} />
+    </ScrollView>
     <Text className="text-white font-inter-700 text-md">
       {actionText}
     </Text>
-    <UIButton title="Open Chat" onPress={onBtnPress} />
   </View>
 }
 

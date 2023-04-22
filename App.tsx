@@ -5,8 +5,8 @@ import { createStackNavigator } from '@react-navigation/stack';
 import { NavigationContainer } from '@react-navigation/native';
 import HomeScreen from './src/screens/Home';
 import ChatScreen from './src/screens/Chat';
+import ChatDavinciScreen from './src/screens/ChatDavinci';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
-
 interface User {
   id: number | string,
   name: string
@@ -19,18 +19,20 @@ export type RootStackParamList = {
     chat_id: string | number,
     title?: string
   };
+  
+  ChatDavinci?: {
+    title?: string
+  };
 };
 export default function App() {
   const Stack = createStackNavigator()
   const [fontsLoaded] = useFonts({
     Inter_400Regular, Inter_500Medium, Inter_700Bold, Inter_900Black
   })
-
+  
   if (!fontsLoaded) {
     return null;
   }
-
-
   return (
     <SafeAreaProvider>
       <NavigationContainer>
@@ -44,7 +46,17 @@ export default function App() {
           />
           <Stack.Screen name="Chat" component={ChatScreen} options={{
             'headerBackTitleVisible': false,
-            title: 'Чат'
+            title: 'Чат GTP-3.5 Turbo'
+          }}
+          initialParams={
+            {
+              chat_id: 123,
+            }
+          }
+          />
+          <Stack.Screen name="ChatDavinci" component={ChatDavinciScreen} options={{
+            'headerBackTitleVisible': false,
+            title: 'Чат с сарказмом text-davinci-003'
           }}
           initialParams={
             {

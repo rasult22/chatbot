@@ -33,7 +33,7 @@ const ChatScreen: React.FC<Props> = ({navigation, route}) => {
         user:chatGTP
       },
     ])
-    alert('Модель настроена на то, чтобы отвечать на сообщения коротко в целях экономии токенов.')
+    alert('Модель настроена на то, чтобы отвечать на сообщения коротко в целях экономии')
   }, [])
   
   const onSend = useCallback(async (messages: IMessage[] = [], isGPT?: boolean) => {
