@@ -21,6 +21,7 @@ const CompletionScreen: React.FC<Props> = ({navigation, route}) => {
   const [codeInput, setCodeInput] = useState('')
   const [isLoading, setIsLoading] = useState(false)
   const [open, setOpen] = useState(false);
+  const [open2, setOpen2] = useState(false);
 
   const [languages, setLanguages] = useState([
       { value: 'typescript', label: 'TypeScript' },
@@ -32,10 +33,19 @@ const CompletionScreen: React.FC<Props> = ({navigation, route}) => {
   ])
   const [language, setLang] = useState('typescript')
   
+  const [models, setModels] = useState([
+      { value: 'text-ada-001', label: 'text-ada-001' },
+      { value: 'ada', label: 'ada' },
+      { value: 'babbage', label: 'babbage' },
+      { value: 'curie', label: 'curie' },
+      { value: 'text-davinci-003', label: 'text-davinci-003' }
+  ])
+  const [model, setModel] = useState('text-davinci-003')
+  
   const generateCompletion = async () => {
     if (!codeInput) return
     setIsLoading(true)
-    const text = await getTextCompletion(codeInput)
+    const text = await getTextCompletion(codeInput, model)
     setIsLoading(false)
     setRerender(false)
     setCodeInput(codeInput + text)
@@ -61,7 +71,7 @@ const CompletionScreen: React.FC<Props> = ({navigation, route}) => {
     </View>
     <View className='px-4 mb-4 z-50 '>
       <Text className="text-md text-white font-inter-500 my-2">
-        Язык программирования
+        Язык программирования:
       </Text>
       <DropDownPicker
         open={open}
@@ -70,6 +80,17 @@ const CompletionScreen: React.FC<Props> = ({navigation, route}) => {
         setOpen={setOpen}
         setValue={setLang}
         setItems={setLanguages}
+      />
+      <Text className="text-md text-white font-inter-500 my-2">
+        Выбрать другую модель:
+      </Text>
+      <DropDownPicker
+        open={open2}
+        value={model}
+        items={models}
+        setOpen={setOpen2}
+        setValue={setModel}
+        setItems={setModels}
       />
     </View>
     {rerenderState && <CodeEditor

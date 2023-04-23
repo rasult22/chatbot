@@ -56,6 +56,13 @@ export default function App() {
           />
           <Stack.Screen name="CompletionDavinci" component={ChatDavinciScreen} options={{
             'headerBackTitleVisible': false,
+            headerStyle: {
+              backgroundColor: '#0f172a',
+            },
+            headerTitleStyle: {
+              color: 'white'
+            },
+            headerTintColor: "white",
             title: 'Code Copilot text-davinci-003'
           }}
           initialParams={

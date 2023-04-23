@@ -44,9 +44,9 @@ export async function getChatResponse(context: ChatMessage[]): Promise<string> {
   //  }, {
   //    apiKey: apiKey
   //  })
-export async function getTextCompletion(prompt: string): Promise<string> {
+export async function getTextCompletion(prompt: string, model: string): Promise<string> {
   const response = await axios.post('https://api.openai.com/v1/completions', {
-    "model": "text-davinci-003",
+    "model": model,
     "prompt": prompt,
     "temperature": 0.5,
     "n": 1,
