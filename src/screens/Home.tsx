@@ -28,6 +28,15 @@ const HomeScreen: React.FC<Props> = ({navigation, route}) => {
       <UICell title="Code Copilot с text-davinci-003 и др." onPress={()=> {
         onBtnPress('CompletionDavinci')
       }} />
+      <UICell title="Редактирование с инструкцией (davinci)" onPress={()=> {
+        // onBtnPress('CompletionDavinci')
+      }} />
+      <UICell title="Генерация изображений DALL-E" onPress={()=> {
+        // onBtnPress('CompletionDavinci')
+      }} />
+      <UICell title="audio to text Whisper" onPress={()=> {
+        // onBtnPress('CompletionDavinci')
+      }} />
     </ScrollView>
     <Text className="text-white font-inter-700 text-md">
       {actionText}
