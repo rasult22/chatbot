@@ -25,7 +25,7 @@ const HomeScreen: React.FC<Props> = ({navigation, route}) => {
       <UICell title="чат с GPT-3.5 Turbo" onPress={() => {
         onBtnPress('Chat')
       }} />
-      <UICell title="Code Copilot с text-davinci-003" onPress={()=> {
+      <UICell title="Code Copilot с text-davinci-003 и др." onPress={()=> {
         onBtnPress('CompletionDavinci')
       }} />
     </ScrollView>

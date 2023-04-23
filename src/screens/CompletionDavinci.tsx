@@ -81,6 +81,8 @@ const CompletionScreen: React.FC<Props> = ({navigation, route}) => {
         setValue={setLang}
         setItems={setLanguages}
       />
+    </View>
+    <View className='px-4 mb-4 z-20 '>
       <Text className="text-md text-white font-inter-500 my-2">
         Выбрать другую модель:
       </Text>
