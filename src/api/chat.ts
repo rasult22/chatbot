@@ -59,3 +59,18 @@ export async function getTextCompletion(prompt: string, model: string): Promise<
     return prompt + '\n // api call error'
   }
 }
+
+export async function generateImageWithDALLE(prompt: string): Promise<string> {
+  const response = await axios.post('https://api.openai.com/v1/images/generations', {
+    prompt, // max 1000 chars
+    n: 1, // 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10
+    size: '256x256', // 512x512 | 256x256 | 1024x1024
+    response_format: 'url', // b64_json | url
+    // user: null // end-user id for detecting abuse
+  }, config)
+
+  if (response.data && response.data.data && response.data.data[0]) {
+    return response.data.data[0].url as string
+  }
+  return ''
+}

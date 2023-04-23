@@ -16,7 +16,7 @@ const HomeScreen: React.FC<Props> = ({navigation, route}) => {
     }
   }, [route.params?.actionText])
 
-  const onBtnPress = (screenName: "Home" | "Chat" | "CompletionDavinci") => {
+  const onBtnPress = (screenName: "Home" | "Chat" | "CompletionDavinci" | "ImageGeneration") => {
     navigation.navigate(screenName)
   }
   
@@ -32,7 +32,7 @@ const HomeScreen: React.FC<Props> = ({navigation, route}) => {
         // onBtnPress('CompletionDavinci')
       }} />
       <UICell title="Генерация изображений DALL-E" onPress={()=> {
-        // onBtnPress('CompletionDavinci')
+        onBtnPress('ImageGeneration')
       }} />
       <UICell title="audio to text Whisper" onPress={()=> {
         // onBtnPress('CompletionDavinci')

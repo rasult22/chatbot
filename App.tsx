@@ -6,6 +6,7 @@ import { NavigationContainer } from '@react-navigation/native';
 import HomeScreen from './src/screens/Home';
 import ChatScreen from './src/screens/Chat';
 import ChatDavinciScreen from './src/screens/CompletionDavinci';
+import ImageGenerationScreen from './src/screens/ImageGeneration'
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 interface User {
   id: number | string,
@@ -19,10 +20,12 @@ export type RootStackParamList = {
     chat_id: string | number,
     title?: string
   };
-  
   CompletionDavinci?: {
     title?: string
   };
+  ImageGeneration?: {
+    title?: string
+  }
 };
 export default function App() {
   const Stack = createStackNavigator()
@@ -65,11 +68,11 @@ export default function App() {
             headerTintColor: "white",
             title: 'Code Copilot text-davinci-003'
           }}
-          initialParams={
-            {
-              chat_id: 123,
-            }
-          }
+          />
+          <Stack.Screen name="ImageGeneration" component={ImageGenerationScreen} options={{
+            'headerBackTitleVisible': false,
+            title: 'DALL-E'
+          }}
           />
         </Stack.Navigator>
       </NavigationContainer>
