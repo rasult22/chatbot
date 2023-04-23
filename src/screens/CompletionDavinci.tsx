@@ -1,6 +1,6 @@
 
-import React, { useState } from 'react';
-import { View, Text, ScrollView, ActivityIndicator} from 'react-native';
+import React, { useRef, useState } from 'react';
+import { View, Text, ScrollView, ActivityIndicator, TextInput} from 'react-native';
 import type {StackScreenProps} from '@react-navigation/stack'
 import DropDownPicker from 'react-native-dropdown-picker';
 import { RootStackParamList } from '../../App';
@@ -17,7 +17,8 @@ type Props = StackScreenProps<RootStackParamList, 'Chat'>
 const CompletionScreen: React.FC<Props> = ({navigation, route}) => {
   const insets = useSafeAreaInsets()
   const keyboard = useKeyboard()
-  const [rerenderState, setRerender] = useState(true)
+
+  const inputRef = useRef<TextInput>(null)
   const [codeInput, setCodeInput] = useState('')
   const [isLoading, setIsLoading] = useState(false)
   const [open, setOpen] = useState(false);
@@ -47,11 +48,12 @@ const CompletionScreen: React.FC<Props> = ({navigation, route}) => {
     setIsLoading(true)
     const text = await getTextCompletion(codeInput, model)
     setIsLoading(false)
-    setRerender(false)
     setCodeInput(codeInput + text)
-    setTimeout(() => {
-      setRerender(true)
-    },0)
+    if (inputRef.current) {
+      inputRef.current.setNativeProps({
+        text: codeInput + text
+      })
+    }
   }
   
   return <ScrollView style={{flex: 1, paddingBottom: insets.bottom}} className="bg-slate-900">
@@ -95,10 +97,11 @@ const CompletionScreen: React.FC<Props> = ({navigation, route}) => {
         setItems={setModels}
       />
     </View>
-    {rerenderState && <CodeEditor
+     <CodeEditor
         onChange={(value) => {
           setCodeInput(value)
         }}
+        ref={inputRef}
         initialValue={codeInput}
         style={{
             ...{
@@ -114,7 +117,6 @@ const CompletionScreen: React.FC<Props> = ({navigation, route}) => {
         syntaxStyle={CodeEditorSyntaxStyles.monokaiSublime}
         showLineNumbers
     />
-    }
   </ScrollView> 
 }
 
