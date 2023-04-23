@@ -5,7 +5,7 @@ import { createStackNavigator } from '@react-navigation/stack';
 import { NavigationContainer } from '@react-navigation/native';
 import HomeScreen from './src/screens/Home';
 import ChatScreen from './src/screens/Chat';
-import ChatDavinciScreen from './src/screens/ChatDavinci';
+import ChatDavinciScreen from './src/screens/CompletionDavinci';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 interface User {
   id: number | string,
@@ -20,7 +20,7 @@ export type RootStackParamList = {
     title?: string
   };
   
-  ChatDavinci?: {
+  CompletionDavinci?: {
     title?: string
   };
 };
@@ -54,9 +54,9 @@ export default function App() {
             }
           }
           />
-          <Stack.Screen name="ChatDavinci" component={ChatDavinciScreen} options={{
+          <Stack.Screen name="CompletionDavinci" component={ChatDavinciScreen} options={{
             'headerBackTitleVisible': false,
-            title: 'Чат с сарказмом text-davinci-003'
+            title: 'Code Copilot text-davinci-003'
           }}
           initialParams={
             {

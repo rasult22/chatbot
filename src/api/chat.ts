@@ -1,12 +1,19 @@
 import axios from 'axios'
 import { apiKey } from '../../env'
 import { ChatMessageResponse, ChatMessage } from '../types/openai'  
+
+const config = {
+  headers: {
+    "Authorization": `Bearer ${apiKey}`,
+    "Content-Type": "application/json"
+  }
+}
+
 export async function getChatResponse(context: ChatMessage[]): Promise<string> {
   const messages = [
     {"role": "system", "content": "Always answer only with five words. If you don't understand question just say: Mmmmmm"},
     ...context
   ]
-  console.log(messages)
   const response: {
     data: ChatMessageResponse
   } = await axios.post('https://api.openai.com/v1/chat/completions', {
@@ -17,12 +24,7 @@ export async function getChatResponse(context: ChatMessage[]): Promise<string> {
      "top_p": 1,
      "presence_penalty": 0,
      "messages": messages
-  }, {
-    headers: {
-      "Authorization": `Bearer ${apiKey}`,
-      "Content-Type": "application/json"
-    }
-  })
+  }, config)
   if (response.data && response.data.choices && response.data.choices[0].message) {
     return response.data.choices[0].message.content 
   }
@@ -42,4 +44,18 @@ export async function getChatResponse(context: ChatMessage[]): Promise<string> {
   //  }, {
   //    apiKey: apiKey
   //  })
-   
+export async function getTextCompletion(prompt: string): Promise<string> {
+  const response = await axios.post('https://api.openai.com/v1/completions', {
+    "model": "text-davinci-003",
+    "prompt": prompt,
+    "temperature": 0.5,
+    "n": 1,
+    "max_tokens": 50
+  }, config)
+
+  if (response.data && response.data.choices) {
+    return response.data.choices[0].text
+  } else {
+    return prompt + '\n // api call error'
+  }
+}

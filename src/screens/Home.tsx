@@ -16,7 +16,7 @@ const HomeScreen: React.FC<Props> = ({navigation, route}) => {
     }
   }, [route.params?.actionText])
 
-  const onBtnPress = (screenName: "Home" | "Chat" | "ChatDavinci") => {
+  const onBtnPress = (screenName: "Home" | "Chat" | "CompletionDavinci") => {
     navigation.navigate(screenName)
   }
   
@@ -25,8 +25,8 @@ const HomeScreen: React.FC<Props> = ({navigation, route}) => {
       <UICell title="чат с GPT-3.5 Turbo" onPress={() => {
         onBtnPress('Chat')
       }} />
-      <UICell title="чат с сарказмом text-davinci-003" onPress={()=> {
-        onBtnPress('ChatDavinci')
+      <UICell title="Code Copilot с text-davinci-003" onPress={()=> {
+        onBtnPress('CompletionDavinci')
       }} />
     </ScrollView>
     <Text className="text-white font-inter-700 text-md">
