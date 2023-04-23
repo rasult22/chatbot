@@ -1,13 +1,17 @@
 import { useFonts, Inter_400Regular, Inter_500Medium, Inter_700Bold, Inter_900Black } from '@expo-google-fonts/inter';
 import React from 'react';
 import Test from './Test'
-import { createStackNavigator } from '@react-navigation/stack';
-import { NavigationContainer } from '@react-navigation/native';
+import { createStackNavigator, } from '@react-navigation/stack';
+import { NavigationContainer, } from '@react-navigation/native';
+
 import HomeScreen from './src/screens/Home';
 import ChatScreen from './src/screens/Chat';
+import AlterHome from './src/screens/alter-home'
 import ChatDavinciScreen from './src/screens/CompletionDavinci';
 import ImageGenerationScreen from './src/screens/ImageGeneration'
 import { SafeAreaProvider } from 'react-native-safe-area-context';
+import UIButton from './src/ui/button/ui-button';
+import { Text, View } from 'react-native';
 interface User {
   id: number | string,
   name: string
@@ -25,7 +29,8 @@ export type RootStackParamList = {
   };
   ImageGeneration?: {
     title?: string
-  }
+  },
+  AlterHome?: {}
 };
 export default function App() {
   const Stack = createStackNavigator()
@@ -40,6 +45,14 @@ export default function App() {
     <SafeAreaProvider>
       <NavigationContainer>
         <Stack.Navigator >
+          <Stack.Screen name="AlterHome" component={AlterHome}
+            options={
+              {
+                title: 'Главная',
+                headerShown: false
+              }
+            }
+          />
           <Stack.Screen name="Home" component={HomeScreen}
             options={
               {
@@ -71,7 +84,8 @@ export default function App() {
           />
           <Stack.Screen name="ImageGeneration" component={ImageGenerationScreen} options={{
             'headerBackTitleVisible': false,
-            title: 'DALL-E'
+            title: 'DALL-E',
+            headerRight: () => ( <View className='mx-4 bg-amber-600 p-2 rounded-md'><Text className="text-white text-xs font-inter-500">PDF</Text></View> )  
           }}
           />
         </Stack.Navigator>

@@ -16,12 +16,15 @@ const HomeScreen: React.FC<Props> = ({navigation, route}) => {
     }
   }, [route.params?.actionText])
 
-  const onBtnPress = (screenName: "Home" | "Chat" | "CompletionDavinci" | "ImageGeneration") => {
+  const onBtnPress = (screenName: "Home" | "Chat" | "CompletionDavinci" | "ImageGeneration" | "AlterHome") => {
     navigation.navigate(screenName)
   }
   
   return <View className="h-full">
     <ScrollView>
+      <UICell title="AlterHome" onPress={() => {
+        onBtnPress('AlterHome')
+      }} />
       <UICell title="чат с GPT-3.5 Turbo" onPress={() => {
         onBtnPress('Chat')
       }} />
