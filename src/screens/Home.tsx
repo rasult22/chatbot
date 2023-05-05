@@ -3,6 +3,7 @@ import React, { useEffect, useState } from 'react';
 import { View, Text, ScrollView } from 'react-native';
 import UIButton from '../ui/button/ui-button'
 import UICell from '../ui/cell/ui-cell'
+import UISlider from '../ui/slider/ui-slider';
 import type {StackScreenProps} from '@react-navigation/stack'
 import { RootStackParamList } from '../../App';
 
@@ -10,6 +11,7 @@ type Props = StackScreenProps<RootStackParamList, 'Home'>
 
 const HomeScreen: React.FC<Props> = ({navigation, route}) => {
   const [actionText, setActionText] = useState('')
+  const [value, setValue] = useState(0.4)
   useEffect(() => {
     if (route.params?.actionText) {
       setActionText(route.params.actionText)
@@ -41,15 +43,18 @@ const HomeScreen: React.FC<Props> = ({navigation, route}) => {
         // onBtnPress('CompletionDavinci')
       }} />
     </ScrollView>
-    <UIButton type="accent" title='Dream' onPress={() => {}} />
-    <UIButton type="bright" title='Dream' onPress={() => {}} />
-    <UIButton type="dark" title='Dream' onPress={() => {}} />
-    <UIButton type="accent" title='Dream' disabled onPress={() => {}} />
-    <UIButton type="bright" title='Dream' disabled onPress={() => {}} />
-    <UIButton type="dark" title='Dream' disabled onPress={() => {}} />
-    <Text className="text-white font-inter-700 text-md">
-      {actionText}
-    </Text>
+    <ScrollView className="px-3">
+      <UISlider value={value} onValueChange={() => {}} />
+      <UIButton type="accent" title='Dream' onPress={() => {}} />
+      <UIButton type="bright" title='Dream' onPress={() => {}} />
+      <UIButton type="dark" title='Dream' onPress={() => {}} />
+      <UIButton type="accent" title='Dream' disabled onPress={() => {}} />
+      <UIButton type="bright" title='Dream' disabled onPress={() => {}} />
+      <UIButton type="dark" title='Dream' disabled onPress={() => {}} />
+      <Text className="text-white font-inter-700 text-md">
+        {actionText}
+      </Text>
+    </ScrollView>
   </View>
 }
 
