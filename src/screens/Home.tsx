@@ -41,6 +41,12 @@ const HomeScreen: React.FC<Props> = ({navigation, route}) => {
         // onBtnPress('CompletionDavinci')
       }} />
     </ScrollView>
+    <UIButton type="accent" title='Dream' onPress={() => {}} />
+    <UIButton type="bright" title='Dream' onPress={() => {}} />
+    <UIButton type="dark" title='Dream' onPress={() => {}} />
+    <UIButton type="accent" title='Dream' disabled onPress={() => {}} />
+    <UIButton type="bright" title='Dream' disabled onPress={() => {}} />
+    <UIButton type="dark" title='Dream' disabled onPress={() => {}} />
     <Text className="text-white font-inter-700 text-md">
       {actionText}
     </Text>
