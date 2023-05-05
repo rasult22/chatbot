@@ -6,6 +6,7 @@ import UICell from '../ui/cell/ui-cell'
 import UISlider from '../ui/slider/ui-slider';
 import UIIconButton from '../ui/button/ui-icon-button';
 import UIImageCard from '../ui/cards/ui-image-card';
+import UISwitch from '../ui/switch/ui-switch';
 import type {StackScreenProps} from '@react-navigation/stack'
 import { RootStackParamList } from '../../App';
 
@@ -14,6 +15,7 @@ type Props = StackScreenProps<RootStackParamList, 'Home'>
 const HomeScreen: React.FC<Props> = ({navigation, route}) => {
   const [actionText, setActionText] = useState('')
   const [value, setValue] = useState(0.4)
+  const [gender, setGender] = useState<'male' | 'female'>('male');
   useEffect(() => {
     if (route.params?.actionText) {
       setActionText(route.params.actionText)
@@ -45,7 +47,11 @@ const HomeScreen: React.FC<Props> = ({navigation, route}) => {
         // onBtnPress('CompletionDavinci')
       }} />
     </ScrollView>
-    <ScrollView className="px-3 bg-black">
+    <ScrollView className="px-3 bg-white">
+      <Text>{gender}</Text>
+      <UISwitch value={gender} onValueChange={(gender) => {
+        setGender(gender)
+      }} />
       <View className='flex flex-row flex-wrap ios:gap-3 mt-3 px-[16px]'>
         <View>
           <UIImageCard 

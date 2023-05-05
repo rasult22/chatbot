@@ -4,7 +4,7 @@ import {Slider} from '@miblanchard/react-native-slider';
 interface Props {
   value: number,
   disabled?: boolean,
-  onValueChange: () => void
+  onValueChange: (value: Array<number>) => void
 }
 
 const UISlider: React.FC<Props> =  ({ value, onValueChange }) => {
