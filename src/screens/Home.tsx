@@ -5,6 +5,7 @@ import UIButton from '../ui/button/ui-button'
 import UICell from '../ui/cell/ui-cell'
 import UISlider from '../ui/slider/ui-slider';
 import UIIconButton from '../ui/button/ui-icon-button';
+import UIImageCard from '../ui/cards/ui-image-card';
 import type {StackScreenProps} from '@react-navigation/stack'
 import { RootStackParamList } from '../../App';
 
@@ -45,6 +46,20 @@ const HomeScreen: React.FC<Props> = ({navigation, route}) => {
       }} />
     </ScrollView>
     <ScrollView className="px-3 bg-black">
+      <View className='flex flex-row flex-wrap ios:gap-3 mt-3 px-[16px]'>
+        <View>
+          <UIImageCard 
+            icon={<UIIconButton type="dark" iconName="cloud-download" iconColor='#FFEAC0' onPress={() =>{}} />} 
+            title='Ryan McCarthy'
+            onPress={() => {}} />
+        </View>
+        <View>
+          <UIImageCard onPress={() => {}} imageSrc='https://static.wikia.nocookie.net/villains/images/7/75/Ryan_The_Terror_McCarthy.jpg' />
+        </View>
+        <View>
+          <UIImageCard onPress={() => {}} />
+        </View>
+      </View>
       <UIIconButton onPress={() =>{}} iconName="cloud-download" iconColor='black' />
       <UIIconButton type="dark" iconName="cloud-download" iconColor='white' onPress={() =>{}} />
       <UIIconButton type="dark" iconName="close" iconColor='#FFEAC0' onPress={() =>{}} />
