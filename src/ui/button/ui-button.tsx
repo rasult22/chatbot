@@ -18,9 +18,9 @@ const classes = {
   bright: 'py-[16px] px-[32px] rounded-[32px]',
   dark: 'px-[32px] rounded-[16px] py-[8px]',
   pressable: {
-    accent: 'border-2 min-w-[250px] active:border-[#FFEAC0] rounded-[32px]',
-    bright: 'border-2 active:border-[#FFEAC0] rounded-[32px]',
-    dark: 'border-2 active:border-[#FFEAC0] rounded-[16px]',
+    accent: 'border-2 border-transparent min-w-[250px] active:border-[#FFEAC0] rounded-[32px]',
+    bright: 'border-2 border-transparent active:border-[#FFEAC0] rounded-[32px]',
+    dark: 'border-2 border-transparent active:border-[#FFEAC0] rounded-[16px]',
   }
 }
 const textClasses = {

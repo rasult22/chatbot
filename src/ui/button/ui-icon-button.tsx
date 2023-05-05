@@ -1,11 +1,14 @@
 import React from 'react';
-import { Pressable } from 'react-native';
+import { Pressable, Text } from 'react-native';
 import { styled } from 'nativewind';
 import FontAwesome from '@expo/vector-icons/FontAwesome'
 import { LinearGradient } from 'expo-linear-gradient';
 interface Props {
+  disabled?: boolean,
+  minWidth?: number,
   iconName: string,
   iconColor: string,
+  title?: string,
   type?: 'accent' | 'dark'
   onPress: () => void
 }
@@ -13,11 +16,11 @@ interface Props {
 const StyledPressable = styled(Pressable)
 
 const classes = {
-  accent: 'rounded-[32px] w-[35px] h-[35px] flex justify-center items-center',
-  dark: 'rounded-[32px] w-[35px] h-[35px] flex justify-center items-center',
+  accent: 'rounded-[32px] h-[35px] flex flex-row justify-center items-center',
+  dark: 'rounded-[32px] h-[35px] flex flex-row justify-center items-center',
   pressable: {
-    accent: 'border-2 active:border-[#FFEAC0] rounded-[32px]',
-    dark: 'border-2 active:border-[#FFEAC0] rounded-[32px]',
+    accent: 'active:opacity-[0.8]',
+    dark: 'active:opacity-[0.8]',
   }
 }
 const gradients = {
@@ -33,18 +36,18 @@ const gradients = {
   }
 }
 
-const UIIconButton: React.FC<Props> =  ({ iconName = "cloud-download", iconColor = "black", onPress, type = "accent" }) => {
+const UIIconButton: React.FC<Props> =  ({ title, minWidth, iconName = "cloud-download", iconColor = "black", onPress, type = "accent" }) => {
   return (
-    <StyledPressable style={{flex: 1, flexDirection: 'row'}} onPress={onPress}>
-      <StyledPressable className={classes.pressable[type]}>
+    <StyledPressable style={{flex: 1, flexDirection: 'row'}} className={classes.pressable[type]} onPress={onPress}>
         <LinearGradient
           colors={gradients[type].colors}
           start={gradients[type].start}
           end={gradients[type].end}
+          style={{width: minWidth ? minWidth : 35}}
           className={classes[type]}>
           <FontAwesome name={iconName} color={iconColor} size={20} />
+          {title && <Text className={`font-inter-500 ml-2 text-base`} style={{color: type==='dark' ? '#FFEAC0' : 'black'}}>{title}</Text>}
         </LinearGradient>
-      </StyledPressable>
     </StyledPressable>
   );
 };

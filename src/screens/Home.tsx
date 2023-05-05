@@ -48,6 +48,12 @@ const HomeScreen: React.FC<Props> = ({navigation, route}) => {
       <UIIconButton onPress={() =>{}} iconName="cloud-download" iconColor='black' />
       <UIIconButton type="dark" iconName="cloud-download" iconColor='white' onPress={() =>{}} />
       <UIIconButton type="dark" iconName="close" iconColor='#FFEAC0' onPress={() =>{}} />
+      <UIIconButton iconName="user" iconColor='black' minWidth={80} onPress={() =>{}} />
+      <UIIconButton type="dark" iconName="user" iconColor='#FFEAC0' minWidth={80} onPress={() =>{}} />
+      <UIIconButton iconName="image" iconColor='black' minWidth={80} onPress={() =>{}} />
+      <UIIconButton type="dark" iconName="image" iconColor='#FFEAC0' minWidth={80} onPress={() =>{}} />
+      <UIIconButton type="dark" iconName="image" title='Your Gallery' iconColor='#FFEAC0' minWidth={150} onPress={() =>{}} />
+      <UIIconButton iconName="image" title='Your Gallery' iconColor='black' minWidth={150} onPress={() =>{}} />
       <UISlider value={value} onValueChange={() => {}} />
       <UIButton minWidth={250} type="accent" title='Dream' onPress={() => {}} />
       <UIButton type="bright" title='Dream' onPress={() => {}} />
