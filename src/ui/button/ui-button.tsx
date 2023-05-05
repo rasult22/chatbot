@@ -5,6 +5,7 @@ import { LinearGradient } from 'expo-linear-gradient';
 interface Props {
   title: string,
   disabled?: boolean,
+  minWidth?: number,
   type?: 'accent' | 'bright' | 'dark'
   onPress: () => void
 }
@@ -13,13 +14,13 @@ const StyledPressable = styled(Pressable)
 const StyledText = styled(Text)
 
 const classes = {
-  accent: 'active:bg-blue-800 rounded-[32px] px-5 py-[16px]',
-  bright: 'py-[16px] px-5 rounded-[32px]',
-  dark: 'active:border-2 border-sky-500 rounded-[32px] px-5 py-[16px]',
+  accent: 'rounded-[32px] px-[32px] py-[16px]',
+  bright: 'py-[16px] px-[32px] rounded-[32px]',
+  dark: 'px-[32px] rounded-[16px] py-[8px]',
   pressable: {
-    accent: 'active:border-2 border-[#FFEAC0] shadow rounded-[32px]',
-    bright: 'active:border-2 border-[#FFEAC0] rounded-[32px]',
-    dark: 'active:border-2 border-[#FFEAC0] rounded-[32px]',
+    accent: 'border-2 min-w-[250px] active:border-[#FFEAC0] rounded-[32px]',
+    bright: 'border-2 active:border-[#FFEAC0] rounded-[32px]',
+    dark: 'border-2 active:border-[#FFEAC0] rounded-[16px]',
   }
 }
 const textClasses = {
@@ -61,17 +62,18 @@ const gradients = {
   }
 }
 
-
-const UIButton: React.FC<Props> =  ({ title, onPress, disabled, type = "accent" }) => {
+const UIButton: React.FC<Props> =  ({ title, minWidth, onPress, disabled, type = "accent" }) => {
   return (
-    <StyledPressable className={classes.pressable[type]} onPress={onPress}>
-      <LinearGradient
-        colors={disabled ? gradients.disabled[type].colors  : gradients[type].colors}
-        start={gradients[type].start}
-        end={gradients[type].end}
-        className={classes[type]}>
-        <StyledText className={disabled ? textClasses.disabled[type] : textClasses[type]} >{title}</StyledText>
-      </LinearGradient>
+    <StyledPressable style={{flex: 1, flexDirection: 'row'}} onPress={onPress}>
+      <StyledPressable style={{minWidth: minWidth ? minWidth : 0 }} className={classes.pressable[type]}>
+        <LinearGradient
+          colors={disabled ? gradients.disabled[type].colors  : gradients[type].colors}
+          start={gradients[type].start}
+          end={gradients[type].end}
+          className={classes[type]}>
+          <StyledText className={disabled ? textClasses.disabled[type] : textClasses[type]} >{title}</StyledText>
+        </LinearGradient>
+      </StyledPressable>
     </StyledPressable>
   );
 };

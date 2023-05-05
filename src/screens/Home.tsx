@@ -43,9 +43,9 @@ const HomeScreen: React.FC<Props> = ({navigation, route}) => {
         // onBtnPress('CompletionDavinci')
       }} />
     </ScrollView>
-    <ScrollView className="px-3">
+    <ScrollView className="px-3 bg-black">
       <UISlider value={value} onValueChange={() => {}} />
-      <UIButton type="accent" title='Dream' onPress={() => {}} />
+      <UIButton minWidth={250} type="accent" title='Dream' onPress={() => {}} />
       <UIButton type="bright" title='Dream' onPress={() => {}} />
       <UIButton type="dark" title='Dream' onPress={() => {}} />
       <UIButton type="accent" title='Dream' disabled onPress={() => {}} />
